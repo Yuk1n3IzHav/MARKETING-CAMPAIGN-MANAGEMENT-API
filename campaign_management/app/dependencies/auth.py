@@ -14,12 +14,12 @@ def get_current_user(
 ):
     try:
         payload = decode_access_token(token)
+
         user_id = payload.get("user_id")
 
         if user_id is None:
             raise HTTPException(
-                status_code=status.HTTP_401_UNAUTHORIZED,
-                detail="Invalid authentication credentials",
+                status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid token"
             )
 
     except Exception:
@@ -31,16 +31,21 @@ def get_current_user(
 
     if user is None:
         raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED, detail="User not found"
+            status_code=status.HTTP_404_NOT_FOUND, detail="User not found"
+        )
+
+    if not user.is_active:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN, detail="Account is inactive"
         )
 
     return user
 
-def require_admin(current_user=Depends(get_current_user)):
-    if current_user.role != "admin":
+
+def require_admin(current_user: User = Depends(get_current_user)):
+    if current_user.role != "ADMIN":
         raise HTTPException(
-            status_code=status.HTTP_403_FORBIDDEN,
-            detail="Admin permission required"
+            status_code=status.HTTP_403_FORBIDDEN, detail="Admin permission required"
         )
 
     return current_user
