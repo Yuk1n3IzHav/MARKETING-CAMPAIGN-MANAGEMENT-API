@@ -5,4 +5,3 @@ from .campaign_member import CampaignMember
 from .campaign_task import CampaignTask
 from .user import User
 
-Base.metadata.create_all(bind=engine)
