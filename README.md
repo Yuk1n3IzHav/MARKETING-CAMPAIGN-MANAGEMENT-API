@@ -27,8 +27,6 @@ campaign_management/
 │   |-- dependencies/
 │   └── utils/
 |-- tests/
-|--.env
 |-- .env.example
-|-- .gitignore
 |-- requirements.txt
 |-- README.md
