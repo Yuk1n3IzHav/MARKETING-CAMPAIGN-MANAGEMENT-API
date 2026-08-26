@@ -21,12 +21,11 @@ campaign_management/
 │   |-- core/
 │   |-- db/
 │   |-- models/
-│   |--schemas/
+│   |-- schemas/
 │   |-- routers/
 │   |-- services/
 │   |-- dependencies/
 │   └── utils/
 |-- tests/
-|-- .env.example
 |-- requirements.txt
 |-- README.md
