@@ -1,31 +1,69 @@
-# Campaign Management API
+# Marketing Campaign Management API
 
-Backend API quản lý chiến dịch marketing được xây dựng bằng FastAPI, SQLAlchemy và MySQL.
+RESTful API quản lý chiến dịch Marketing được xây dựng bằng **FastAPI**, **SQLAlchemy** và **MySQL**.
 
-## Công nghệ
+## 1. Công nghệ sử dụng
 
-- Python
+- Python 3.10+
 - FastAPI
 - SQLAlchemy
 - MySQL
+- PyMySQL
 - Pydantic
 - JWT
-- bcrypt
+- bcrypt / Passlib
+- Uvicorn
+- python-dotenv
 
-## Cấu trúc
+## 2. Cấu trúc project
 
 ```text
 campaign_management/
-|--app/
-│   |-- main.py
-│   |-- core/
-│   |-- db/
-│   |-- models/
-│   |-- schemas/
-│   |-- routers/
-│   |-- services/
-│   |-- dependencies/
-│   └── utils/
-|-- tests/
-|-- requirements.txt
-|-- README.md
+│
+├── app/
+│   ├── core/
+│   │   └── config.py
+│   │
+│   ├── db/
+│   │   ├── seed.py
+│   │   └── database.py
+│   │
+│   ├── dependencies/
+│   │   └── auth.py
+│   │
+│   ├── models/
+│   │   ├── user.py
+│   │   ├── campaign.py
+│   │   ├── campaign_member.py
+│   │   ├── campaign_task.py
+│   │   └── campaign_audit_log.py
+│   │
+│   ├── schemas/
+│   │   ├── user.py
+│   │   ├── campaign.py
+│   │   ├── campaign_member.py
+│   │   ├── campaign_task.py
+│   │   └── response.py
+│   │
+│   ├── services/
+│   │   ├── auth_service.py
+│   │   ├── user_service.py
+│   │   ├── campaign_service.py
+│   │   ├── campaign_member_service.py
+│   │   └── campaign_task_service.py
+│   │
+│   ├── routers/
+│   │   ├── auth.py
+│   │   ├── users.py
+│   │   ├── campaign.py
+│   │   └── campaign_task.py
+│   │
+│   ├── utils/
+│   │   ├── rate_limit.py
+│   │   └── exceptions.py
+│   │
+│   └── main.py
+│
+├── .env.example
+├── requirements.txt
+└── README.md
